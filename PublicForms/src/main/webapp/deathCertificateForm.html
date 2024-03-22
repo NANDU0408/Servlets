@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Death Certificate</title>
+    <!-- Bootstrap CSS -->
+    <link href="bootstrap.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            margin: 20px;
+        }
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            font-weight: bold;
+        }
+        input[type="text"],
+        input[type="date"],
+        select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        button[type="submit"] {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+        button[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <h2 class="text-center mb-4">Death Certificate Application Form</h2>
+            <form action="deathForm" method="POST">
+                <label for="fname">Deceased First Name</label>
+                <input type="text" class="form-control" id="fname" name="fname" required>
+                <label for="lname">Deceased Last Name</label>
+                <input type="text" class="form-control" id="lname" name="lname" required>
+                <label for="bdate">Date of Birth</label>
+                <input type="date" class="form-control" id="bdate" name="bdate" required>
+                <label for="ddate">Date of Death</label>
+                <input type="date" class="form-control" id="ddate" name="ddate" required>
+                <label for="COD">Cause of Death</label>
+                <select class="form-control" id="COD" name="COD" required>
+                    <option value="">Select</option>
+                    <option>Heart Attack</option>
+                    <option>Accident</option>
+                    <option>Natural Death</option>
+                    <option>Suicide</option>
+                    <option>Murder</option>
+                    <option>Disaster</option>
+                    <option>Organ Failure</option>
+                    <option>Virus</option>
+                    <option>Cancer</option>
+                    <option>Brain Hemorrhage</option>
+                </select>
+                <label for="POD">Place of Death</label>
+                <input type="text" class="form-control" id="POD" name="POD" required>
+                <label for="CIOD">City of Death</label>
+                <input type="text" class="form-control" id="CIOD" name="CIOD" required>
+                <label for="COOD">Country of Death</label>
+                <input type="text" class="form-control" id="COOD" name="COOD" value="" required>
+                <label for="WName">Witness Name</label>
+                <input type="text" class="form-control" id="WName" name="WName" required>
+                <label for="ROD">Relation to Deceased</label>
+                <input type="text" class="form-control" id="ROD" name="ROD" required>
+                <button type="submit" class="btn btn-primary" name="submit" value="Call">Apply</button><br>
+                <br>
+                <div class="mb-4">
+                    <a href="index.html" class="btn btn-primary mr-2">Go Back</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>
