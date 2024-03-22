@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+    <title>Product Order Form</title>
+    <link href="bootstrap.css" rel="stylesheet">
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+            <img src="computerImg.avif" alt="Logo" style="width: 50px;">
+            Shree Ram Narayan Computer Parts Co. Ltd.
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="about.html">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="contactDetails.html">Contact</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="computerPart.html">Computer-Parts</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="tvRecharge.html">TV-Recharge</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav><br>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <h2 class="text-center mb-4 mt-4">Product Order Form</h2>
+            <form id="orderForm" action="submit_order" method="POST" onsubmit="return validateForm()">
+                <label for="customerID">Customer ID</label>
+                <input type="text" class="form-control" onblur="customerIDValidation()" id="customerID" name="customerID" maxlength="8" required>
+                <div id="customerIDError" class="error-message"></div>
+                <label for="product">Select Product</label>
+                <select class="form-control" id="product" name="product" onchange="validateForm()" required>
+                    <option value="">Select Product</option>
+                    <option>Laptop</option>
+                    <option>Smartphone</option>
+                    <option>Headphones</option>
+                </select>
+                <div id="productError" class="error-message"></div>
+                <label for="quantity">Quantity</label>
+                <input type="number" class="form-control" id="quantity" name="quantity" min="1" max="10" onchange="validateForm()" required>
+                <div id="quantityError" class="error-message"></div>
+                <label for="shipping">Select Shipping Method</label>
+                <select class="form-control" id="shipping" name="shipping" onchange="validateForm()" required>
+                    <option value="">Select Shipping Method</option>
+                    <option>Standard Shipping</option>
+                    <option>Express Shipping</option>
+                </select>
+                <div id="shippingError" class="error-message"></div>
+                <label for="fullName">Full Name</label>
+                <input type="text" class="form-control" id="fullName" name="fullName" onchange="validateForm()" required>
+                <div id="fullNameError" class="error-message"></div>
+                <label for="email">Email</label>
+                <input type="email" class="form-control" id="email" name="email" onchange="validateForm()" required>
+                <div id="emailError" class="error-message"></div>
+                <label>Select Payment Method</label><br>
+                <input type="radio" id="paymentMethod1" name="paymentMethod" value="creditCard" onchange="validateForm()" required>
+                <label for="paymentMethod1">Credit Card</label><br>
+                <input type="radio" id="paymentMethod2" name="paymentMethod" value="paypal" onchange="validateForm()">
+                <label for="paymentMethod2">Paypal</label><br>
+                <div id="paymentMethodError" class="error-message"></div>
+                <label>
+                    <input type="checkbox" id="acceptTerms" name="acceptTerms" value="accepted" onchange="validateForm()" required>
+                    I agree to the Terms and Conditions
+                </label>
+                <div id="acceptTermsError" class="error-message"></div>
+                <div class="mb-1 d-flex justify-content-center">
+                    <button type="submit" class="btn btn-primary" id="submitButton" disabled>Place Order</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script>
+    function validateForm() {
+        var customerID = document.getElementById('customerID').value.trim();
+        var product = document.getElementById('product').value.trim();
+        var quantity = document.getElementById('quantity').value.trim();
+        var shipping = document.getElementById('shipping').value.trim();
+        var fullName = document.getElementById('fullName').value.trim();
+        var email = document.getElementById('email').value.trim();
+        var paymentMethod = document.querySelector('input[name="paymentMethod"]:checked');
+        var acceptTerms = document.getElementById('acceptTerms');
+
+        var isValid = true;
+
+        // Validate ID
+        if (customerID === "" || customerID.length !== 8) {
+            document.getElementById('customerIDError').innerText = "Please enter an 8-character ID";
+            isValid = false;
+        } else {
+            document.getElementById('customerIDError').innerText = "";
+        }
+
+        // Validate product
+        if (product === "") {
+            document.getElementById('productError').innerText = "Please select a product";
+            isValid = false;
+        } else {
+            document.getElementById('productError').innerText = "";
+        }
+
+        // Validate quantity
+        if (quantity === "" || quantity < 1|| quantity > 10) {
+            document.getElementById('quantityError').innerText = "Please enter a quantity between 1 and 10";
+            isValid = false;
+        } else {
+            document.getElementById('quantityError').innerText = "";
+        }
+
+        // Validate shipping
+        if (shipping === "") {
+            document.getElementById('shippingError').innerText = "Please select a shipping method";
+            isValid = false;
+        } else {
+            document.getElementById('shippingError').innerText = "";
+        }
+
+        // Validate fullName
+        if (fullName === "") {
+            document.getElementById('fullNameError').innerText = "Please enter your full name";
+            isValid = false;
+        } else {
+            document.getElementById('fullNameError').innerText = "";
+        }
+
+        // Validate email
+        if (email === "") {
+            document.getElementById('emailError').innerText = "Please enter your email";
+            isValid = false;
+        } else {
+            document.getElementById('emailError').innerText = "";
+        }
+
+        // Validate payment method
+        if (!paymentMethod) {
+            document.getElementById('paymentMethodError').innerText = "Please select a payment method";
+            isValid = false;
+        } else {
+            document.getElementById('paymentMethodError').innerText = "";
+        }
+
+        // Validate accept terms checkbox
+        if (!acceptTerms.checked) {
+            document.getElementById('acceptTermsError').innerText = "Please accept the terms and conditions";
+            isValid = false;
+        } else {
+            document.getElementById('acceptTermsError').innerText = "";
+        }
+
+        // Enable/disable the submit button based on form validity
+        var submitButton = document.getElementById('submitButton');
+        if (isValid) {
+            submitButton.removeAttribute('disabled');
+        } else {
+            submitButton.setAttribute('disabled', 'disabled');
+        }
+
+        return isValid;
+    }
+
+    function customerIDValidation() {
+        var customerID = document.getElementById('customerID').value.trim();
+
+        if (customerID === "") {
+            document.getElementById('customerIDError').innerText = "Please enter Customer ID";
+            document.getElementById('submitButton').setAttribute('disabled', 'disabled');
+        } else if (customerID.length !== 8) {
+            document.getElementById('customerIDError').innerText = "Customer ID must be 8 characters only";
+            document.getElementById('submitButton').setAttribute('disabled', 'disabled');
+        } else {
+            document.getElementById('customerIDError').innerText = "";
+            validateForm();
+        }
+    }
+</script>
+
+</body>
+</html>

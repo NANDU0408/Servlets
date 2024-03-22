@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+    <title>Computer Parts Application Form</title>
+    <link rel="icon" href="computerImg.avif">
+    <link href="bootstrap.css" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">-->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            margin: 20px;
+        }
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            font-weight: bold;
+        }
+        input[type="text"],
+        input[type="number"],
+        select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        button[type="submit"] {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            padding: 7px 20px;
+            cursor: pointer;
+        }
+        button[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+            <img src="computerImg.avif" alt="Logo" style="width: 50px;">
+            Shree Ram Narayan Computer Parts Co. Ltd.
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="about.html">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="contactDetails.html">Contact</a>
+                </li>
+                <li class="nav-item">
+                    <a href="tvRecharge.html" class="nav-link btn">TV-Recharge</a>
+                </li>
+                <li class="nav-item">
+                    <a href="productOrderForm.html" class="nav-link btn">Product Ordering</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <h2 class="text-center mb-4 mt-4">Computer Parts Application Form</h2>
+            <form action="parts" method="POST">
+                <label for="brand">Brand</label>
+                <select class="form-control" id="brand" name="brand" required>
+                    <option value="">Select Brand</option>
+                    <option>LENEVO</option>
+                    <option>LG</option>
+                    <option>HP</option>
+                    <option>APPLE</option>
+                    <option>DELL</option>
+                </select>
+                <label for="model">Model</label>
+                <input type="text" class="form-control" id="model" name="model" required>
+                <label for="color">Color</label>
+                <select class="form-control" id="color" name="color" required>
+                    <option value="">Select Color</option>
+                    <option>Black</option>
+                    <option>White</option>
+                    <option>Silver</option>
+                    <option>Blue</option>
+                </select>
+                <label for="type">Type</label>
+                <select class="form-control" id="type" name="type" required>
+                    <option value="">Select Type</option>
+                    <option>Processor</option>
+                    <option>RAM</option>
+                    <option>Hard Disk</option>
+                    <option>Motherboard</option>
+                </select>
+                <label for="RAM">RAM</label>
+                <select class="form-control" id="RAM" name="RAM" required>
+                    <option value="">Select RAM</option>
+                    <option>4GB</option>
+                    <option>8GB</option>
+                    <option>16GB</option>
+                </select>
+                <label for="hardDisk">Hard Disk</label>
+                <select class="form-control" id="hardDisk" name="hardDisk" required>
+                    <option value="">Select Hard Disk</option>
+                    <option>256GB SSD</option>
+                    <option>512GB SSD</option>
+                    <option>1TB HDD</option>
+                </select>
+                <label for="processor">Processor</label>
+                <select class="form-control" id="processor" name="processor" required>
+                    <option value="">Select Processor</option>
+                    <option>Intel Core i5</option>
+                    <option>Intel Core i7</option>
+                    <option>AMD Ryzen 5</option>
+                    <option>AMD Ryzen 7</option>
+                </select>
+                <label for="generation">Generation</label>
+                <select class="form-control" id="generation" name="generation" required>
+                    <option value="">Select Generation</option>
+                    <option>8th Gen</option>
+                    <option>9th Gen</option>
+                    <option>10th Gen</option>
+                </select>
+                <label for="motherboard">Motherboard</label>
+                <select class="form-control" id="motherboard" name="motherboard" required>
+                    <option value="">Select Motherboard</option>
+                    <option>Gigabyte B450M DS3H</option>
+                    <option>ASUS ROG Strix B450-F</option>
+                    <option>MSI B450 Tomahawk</option>
+                </select>
+                <label for="cacheSize">Cache Size</label>
+                <select class="form-control" id="cacheSize" name="cacheSize" required>
+                    <option value="">Select Cache Size</option>
+                    <option>6MB</option>
+                    <option>8MB</option>
+                    <option>12MB</option>
+                </select>
+                <label for="cost">Cost</label>
+                <input type="number" class="form-control" id="cost" name="cost" required>
+                <label for="quantity">Quantity</label>
+                <input type="number" class="form-control" id="quantity" name="quantity" required>
+                <div class="mb-1 d-flex justify-content-center">
+                    <button type="submit" class="btn btn-primary">Apply</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

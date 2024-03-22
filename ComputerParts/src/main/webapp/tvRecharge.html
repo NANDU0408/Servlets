@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+    <title>TV Recharge Form</title>
+    <link rel="icon" href="computerImg.avif">
+    <link href="bootstrap.css" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">-->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            margin: 20px;
+        }
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            font-weight: bold;
+        }
+        input[type="text"],
+        input[type="number"],
+        select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        button[type="submit"] {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            padding: 7px 20px;
+            cursor: pointer;
+        }
+        button[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+        .error-message {
+            color: red;
+            font-size: 0.8em;
+        }
+    </style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+            <img src="computerImg.avif" alt="Logo" style="width: 50px;">
+            Shree Ram Narayan Computer Parts Co. Ltd.
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="about.html">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="contactDetails.html">Contact</a>
+                </li>
+                <li class="nav-item">
+                    <a href="computerPart.html" class="nav-link btn">Computer-Parts</a>
+                </li>
+                <li class="nav-item">
+                    <a href="productOrderForm.html" class="nav-link btn">Product Ordering</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <h2 class="text-center mb-4 mt-4">TV Recharge Form</h2>
+            <form id="rechargeForm" action="tv" method="POST" onsubmit="return validateForm()">
+                <label for="customerID">Customer ID</label>
+                <input type="text" class="form-control" onblur="customerIDValidation()" id="customerID" name="customerID" maxlength="8" required>
+                <div id="customerIDError" class="error-message"></div>
+                <label for="vendor">Vendor</label>
+                <select class="form-control" id="vendor" name="vendor" onchange="validateForm()" required>
+                    <option value="">Select Vendor</option>
+                    <option>Vendor 1</option>
+                    <option>Vendor 2</option>
+                    <option>Vendor 3</option>
+                </select>
+                <div id="vendorError" class="error-message"></div>
+                <label for="rechargeType">TV Recharge Type</label>
+                <select class="form-control" id="rechargeType" name="rechargeType" onchange="validateForm()" required>
+                    <option value="">Select Recharge Type</option>
+                    <option>Monthly</option>
+                    <option>Topup</option>
+                    <option>Ott</option>
+                </select>
+                <div id="rechargeTypeError" class="error-message"></div>
+                <label for="rechargeAmount">TV Recharge Amount</label>
+                <input type="number" class="form-control" id="rechargeAmount" name="rechargeAmount" min="10" max="10000" onchange="validateForm()" required>
+                <div id="rechargeAmountError" class="error-message"></div>
+                <label for="accept">Accept</label>
+                <input type="checkbox" id="accept" name="term-accept" value="accepted" onchange="validateForm()">
+                <div id="acceptError" class="error-message"></div>
+                <div class="mb-1 d-flex justify-content-center">
+                    <button type="submit" class="btn btn-primary" id="submitButton" disabled>Apply</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    function validateForm() {
+        var customerID = document.getElementById('customerID').value.trim();
+        var vendor = document.getElementById('vendor').value.trim();
+        var rechargeType = document.getElementById('rechargeType').value.trim();
+        var rechargeAmount = document.getElementById('rechargeAmount').value.trim();
+        var accept = document.getElementById('accept');
+
+        var isValid = true;
+
+<!--        // Validate customerID-->
+<!--        if (customerID === "") {-->
+<!--            document.getElementById('customerIDError').innerText = "Please enter Customer ID";-->
+<!--            isValid = false;-->
+<!--        } else {-->
+<!--            document.getElementById('customerIDError').innerText = "";-->
+<!--        }-->
+
+<!--        // Validate vendor-->
+<!--        if (vendor === "") {-->
+<!--            document.getElementById('vendorError').innerText = "Please select a Vendor";-->
+<!--            isValid = false;-->
+<!--        } else {-->
+<!--            document.getElementById('vendorError').innerText = "";-->
+<!--        }-->
+
+<!--        // Validate rechargeType-->
+<!--        if (rechargeType === "") {-->
+<!--            document.getElementById('rechargeTypeError').innerText = "Please select Recharge Type";-->
+<!--            isValid = false;-->
+<!--        } else {-->
+<!--            document.getElementById('rechargeTypeError').innerText = "";-->
+<!--        }-->
+
+<!--        // Validate rechargeAmount-->
+<!--        if (rechargeAmount === "") {-->
+<!--            document.getElementById('rechargeAmountError').innerText = "Please enter TV Recharge Amount";-->
+<!--            isValid = false;-->
+<!--        } else if (rechargeAmount < 10 || rechargeAmount > 10000) {-->
+<!--            document.getElementById('rechargeAmountError').innerText = "TV Recharge Amount must be between 10 and 10,000";-->
+<!--            isValid = false;-->
+<!--        } else {-->
+<!--            document.getElementById('rechargeAmountError').innerText = "";-->
+<!--        }-->
+
+        // Validate accept checkbox
+        if (!accept.checked) {
+            document.getElementById('acceptError').innerText = "Please accept the terms";
+            isValid = false;
+        } else {
+            document.getElementById('acceptError').innerText = "";
+        }
+
+        // Enable/disable the submit button based on form validity
+        var submitButton = document.getElementById('submitButton');
+        if (isValid) {
+            submitButton.removeAttribute('disabled');
+        } else {
+            submitButton.setAttribute('disabled', 'disabled');
+        }
+
+        return isValid;
+    }
+
+    function customerIDValidation() {
+        var customerID = document.getElementById('customerID').value.trim();
+
+        if (customerID === "") {
+             document.getElementById('customerIDError').innerText = "Please enter Customer ID";
+             document.getElementById('submitButton').setAttribute('disabled', 'disabled');
+        } else if(customerID.length !== 8){
+             document.getElementById('customerIDError').innerText = "Customer ID must be 8 characters only";
+             document.getElementById('submitButton').setAttribute('disabled', 'disabled');
+        }else {
+              document.getElementById('customerIDError').innerText = "";
+              validateForm();
+        }
+    }
+
+    function vendorValidation() {
+        var vendor = document.getElementById('vendor').value.trim();
+
+        if (vendor === "") {
+            document.getElementById('vendorError').innerText = "Please select a Vendor";
+            document.getElementById('submitButton').setAttribute('disabled', 'disabled');
+        }
+        else {
+            document.getElementById('vendorError').innerText = "";
+            validateForm();
+        }
+    }
+
+    function rechargeTypeValidation() {
+        var rechargeType = document.getElementById('rechargeType').value.trim();
+
+        if (rechargeType === "") {
+            document.getElementById('rechargeTypeError').innerText = "Please select Recharge Type";
+            document.getElementById('submitButton').setAttribute('disabled', 'disabled');
+        } else {
+            document.getElementById('rechargeTypeError').innerText = "";
+            validateForm();
+        }
+    }
+
+    function rechargeAmountValidation() {
+        var rechargeAmount = document.getElementById('rechargeAmount').value.trim();
+
+        if (rechargeAmount === "") {
+            document.getElementById('rechargeAmountError').innerText = "Please enter TV Recharge Amount";
+            document.getElementById('submitButton').setAttribute('disabled', 'disabled');
+        } else if (rechargeAmount < 10 || rechargeAmount > 10000) {
+            document.getElementById('rechargeAmountError').innerText = "TV Recharge Amount must be between 10 and 10,000";
+            document.getElementById('submitButton').setAttribute('disabled', 'disabled');
+        } else {
+            document.getElementById('rechargeAmountError').innerText = "";
+            validateForm();
+        }
+    }
+
+    function acceptValidation() {
+        var accept = document.getElementById('accept');
+
+        if (!accept.checked) {
+            document.getElementById('acceptError').innerText = "Please accept the terms";
+            document.getElementById('submitButton').setAttribute('disabled', 'disabled');
+        } else {
+            document.getElementById('acceptError').innerText = "";
+            validateForm();
+        }
+    }
+</script>
+
+</body>
+</html>
